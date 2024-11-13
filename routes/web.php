@@ -8,5 +8,4 @@ Route::get('/', function () {
 });
 
 Route::get("/", [PostController::class, 'index'])->name('posts.index');
-// Route::get();
-// Route::post();
+Route::get("posts/{posts}", [PostController::class, 'show'])->name('posts.show');
