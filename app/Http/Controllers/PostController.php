@@ -36,7 +36,31 @@ class PostController extends Controller
             'user_id' => 1
         ]);
 
-        return redirect()->route('posts.show', $post->id)->with('success', 'Post Created Succefully');
+        return redirect()->route('posts.show', $post->id)->with('success', 'Post Created Successfully');
     }
+
+
+    function edit($id){
+       $post = Post::find($id);
+
+       return view('posts.edit', compact('post'));
+    }
+
+    function update(Request $request, $id){
+
+        $post = Post::findOrFail($id);
+
+        $request->validate([
+            'title' => 'required|string|max:25',
+            'content' => 'required|string'
+        ]);
+
+        $post->update([
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
+
+        return redirect()->route('posts.show', $post->id)->with('success', 'Post Updated Successfully');
+     }
 
 }
