@@ -22,6 +22,14 @@
                                     {{ Str::limit($post->content, 100) }}
                                 </p>
                                 <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary">Read More</a>
+
+                                <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this post?');">
+                                        Delete
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
