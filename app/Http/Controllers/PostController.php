@@ -23,9 +23,20 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        return 'hi';
+        $request->validate([
+            'title' => 'required|string|max:25',
+            'content' => 'required|string'
+        ]);
+
+        $post = Post::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'user_id' => 1
+        ]);
+
+        return redirect()->route('posts.show', $post->id)->with('success', 'Post Created Succefully');
     }
 
 }
