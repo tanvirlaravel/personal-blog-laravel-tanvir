@@ -28,6 +28,10 @@
                         <a class="nav-link" href="{{ route('posts.index') }}">Home</a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('posts.create') }}">Create Post</a>
+                    </li>
+
                 </ul>
             </div>
         </div>
